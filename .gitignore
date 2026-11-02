@@ -62,7 +62,6 @@ frontend-react/.env.local
 
 # --- Editor & OS metadata ---
 
-.vscode/
 
 .idea/
 
