@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="title desc">
+<title id="title">AI Personality Predictor</title><desc id="desc">An interactive assessment, powered by machine learning.</desc>
+<rect width="1280" height="320" rx="20" fill="#0F172A"/>
+<circle cx="1190" cy="55" r="210" fill="#38BDF8" opacity=".12"/>
+<circle cx="1130" cy="245" r="130" fill="none" stroke="#38BDF8" stroke-width="2" opacity=".35"/>
+<path d="M910 80h90v90h90v90h95" fill="none" stroke="#38BDF8" stroke-width="3" opacity=".5"/>
+<rect x="64" y="52" width="5" height="32" rx="2" fill="#38BDF8"/>
+<text x="86" y="76" fill="#38BDF8" font-family="Segoe UI,Arial,sans-serif" font-size="18" letter-spacing="3">FULL-STACK / MACHINE LEARNING</text>
+<text x="64" y="159" fill="#F8FAFC" font-family="Segoe UI,Arial,sans-serif" font-size="54" font-weight="700">AI Personality Predictor</text>
+<text x="64" y="207" fill="#CBD5E1" font-family="Segoe UI,Arial,sans-serif" font-size="23">An interactive assessment, powered by machine learning.</text>
+<text x="64" y="270" fill="#94A3B8" font-family="Segoe UI,Arial,sans-serif" font-size="17">KAJANRAJ400 / GITHUB</text>
+</svg>
