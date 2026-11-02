@@ -1,7 +1,5 @@
 # Contributing
 
-Start from `main` and create a focused feature or fix branch. Explain the problem, your change and how you verified it in the pull request.
+Create a focused branch from the project base. Explain the trigger, changed behaviour and verification in the PR. Add screenshots from real app runs for interface changes. For model changes, document provenance, feature order, split method and metrics.
 
-For frontend changes, include a screenshot and run `npm run build` in `frontend-react/`. For API changes, describe the requests and responses you checked, including authentication and invalid inputs where relevant. Never commit real account data, tokens or local secrets.
-
-For model changes, describe the dataset, split method, feature order, package versions and evaluation procedure. Keep synthetic demonstration results separate from results on real observations.
+Use the bug/enhancement forms. Preserve attribution and keep local credentials and personal records out of commits. Documentation and visuals live in `docs/`; keep application paths stable unless imports and builds are updated.

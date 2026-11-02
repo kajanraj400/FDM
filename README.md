@@ -17,6 +17,9 @@
 
 ---
 
+![Project highlights](docs/project-cards.svg)
+
+
 A full-stack academic application that turns questionnaire responses into **Introvert**, **Extrovert**, or **Ambivert** predictions. React provides the assessment experience, Flask serves the API, and a saved machine learning model generates predictions.
 
 ## Features
@@ -77,6 +80,9 @@ This creates the React production build. Backend deployment and serving that bui
 
 ## Architecture
 
+![Source architecture](docs/architecture.svg)
+
+
 | Layer | Responsibility | Location |
 | --- | --- | --- |
 | React frontend | Assessment, authentication views, dashboard and results | [frontend-react/src](frontend-react/src) |
@@ -135,3 +141,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for a small, reviewable contribution work
 <div align="center">
 Built with React · Flask · scikit-learn
 </div>
+
+## Documentation
+
+[Visual guide](docs/README.md) · [Roadmap](docs/ROADMAP.md) · [Citation](CITATION.cff) · [Licensing](docs/LICENSING.md)
