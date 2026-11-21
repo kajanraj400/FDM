@@ -1,141 +1,147 @@
-# AI Personality Predictor - React + Flask Application
+<div align="center">
 
-## 🚀 Complete Project Setup
+<img src="docs/banner.svg" alt="AI Personality Predictor — React, Flask and machine learning" width="100%" />
 
-### Prerequisites
-- Python 3.8+ 
-- Node.js 16+
-- npm or yarn
+# AI Personality Predictor
 
-### 🎯 Installation Steps
+**Explore personality patterns through an interactive assessment.**
 
-#### 1. Backend Setup (Flask + SQLite)
+![React](https://img.shields.io/badge/React-18-149ECA?style=flat-square&logo=react&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-2.3-111827?style=flat-square&logo=flask&logoColor=white)
+![Python](https://img.shields.io/badge/Python-ML-3776AB?style=flat-square&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-storage-003B57?style=flat-square&logo=sqlite&logoColor=white)
 
-```bash
-# Navigate to project root
+[Features](#features) · [Quick start](#quick-start) · [Architecture](#architecture) · [API](#api-reference)
+
+</div>
+
+---
+
+![Project highlights](docs/project-cards.svg)
+
+
+A full-stack academic application that turns questionnaire responses into **Introvert**, **Extrovert**, or **Ambivert** predictions. React provides the assessment experience, Flask serves the API, and a saved machine learning model generates predictions.
+
+## Features
+
+| Experience | Implementation |
+| --- | --- |
+| Guided assessment | Step-by-step questions, sliders and progress indicators |
+| Account access | Signup, login and JWT-protected API routes |
+| Prediction results | Predicted class, model probabilities and descriptive advice |
+| Personal dashboard | Previous assessments and individual result pages |
+| Profile management | View and update account details |
+| Interface | Tailwind CSS and Framer Motion |
+
+## Quick start
+
+Clone the repository:
+
+~~~bash
+git clone https://github.com/kajanraj400/FDM.git
 cd FDM
+~~~
 
-# Create virtual environment
+### 1. Start the backend
+
+Use a Python environment compatible with the pinned dependencies in [requirements.txt](requirements.txt). Python 3.11 is a practical starting point; installation has not been verified as part of this documentation update.
+
+~~~powershell
 python -m venv .venv
-
-# Activate virtual environment
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Run the Flask backend
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 python app.py
-```
+~~~
 
-Backend will run on http://localhost:5000
+On macOS/Linux, activate with `source .venv/bin/activate`.
 
-#### 2. Frontend Setup (React)
+Keep this terminal open. The Flask development API listens at **http://localhost:5000**. Run from the repository root so that the model and feature files can be found.
 
-```bash
-# Navigate to React frontend folder
-cd frontend-react
+### 2. Start the frontend
 
-# Install Node dependencies
-npm install
+Open a second terminal with Node.js and npm installed:
 
-# Start the React development server
+~~~bash
+cd FDM/frontend-react
+npm ci
 npm start
-```
+~~~
 
-Frontend will run on http://localhost:3000
+Open **http://localhost:3000**, create an account, complete the assessment and explore the results. The frontend development proxy forwards API requests to port 5000.
 
-### 🏗️ Project Structure
+### 3. Build the frontend
 
-```
-FDM/
-├── app.py                 # Flask backend with authentication & ML
-├── requirements.txt       # Python dependencies
-├── features.json         # ML feature definitions
-├── joblib/              # Trained ML models
-│   ├── final_gnb_personality_model.joblib
-│   └── personality_label_encoder.joblib
-├── personality_app.db   # SQLite database (auto-created)
-└── frontend-react/      # React application
-    ├── package.json
-    ├── public/
-    ├── src/
-    │   ├── components/   # Reusable components
-    │   ├── contexts/     # React context (auth)
-    │   ├── pages/        # Page components
-    │   ├── App.js
-    │   └── index.js
-    └── tailwind.config.js
-```
+~~~bash
+cd frontend-react
+npm run build
+~~~
 
-### 🔧 Key Features Implemented
+This creates the React production build. Backend deployment and serving that build require separate configuration.
 
-#### ✅ **Backend (Flask)**
-- **JWT Authentication** - Secure login/signup with tokens
-- **SQLite Database** - User accounts and test history storage
-- **Enhanced ML API** - Confidence scores and detailed predictions
-- **Personality Advice System** - Personalized recommendations
-- **CORS Enabled** - Cross-origin requests from React frontend
+## Architecture
 
-#### ✅ **Frontend (React)**
-- **Modern UI** - Tailwind CSS with animations
-- **Authentication Flow** - Login/signup with protected routes
-- **Interactive Test** - Step-by-step personality assessment
-- **User Dashboard** - Statistics and recent tests
-- **Responsive Design** - Mobile-friendly interface
-- **Real-time Feedback** - Live slider updates with descriptions
+![Source architecture](docs/architecture.svg)
 
-#### ✅ **User Experience Improvements**
-- **Intuitive Sliders** - No more decimal input confusion!
-- **Visual Feedback** - Color-coded responses with descriptions
-- **Progress Tracking** - Step-by-step completion indicators
-- **Personalized Advice** - Tailored recommendations per personality type
-- **Test History** - Track personality changes over time
 
-### 🎮 How to Use
+| Layer | Responsibility | Location |
+| --- | --- | --- |
+| React frontend | Assessment, authentication views, dashboard and results | [frontend-react/src](frontend-react/src) |
+| Flask API | Authentication, prediction, profiles and history | [app.py](app.py) |
+| Feature definition | Ordered model input names | [features.json](features.json) |
+| Model artifacts | Saved classifier and label encoder | [joblib](joblib) |
+| SQLite | Accounts and saved assessment records | `instance/personality_app.db` |
+| Training example | Synthetic-data Gaussian Naive Bayes retraining script | [retrain_model.py](retrain_model.py) |
 
-1. **Start both servers** (Flask backend + React frontend)
-2. **Visit** http://localhost:3000
-3. **Sign up** for a new account or use demo credentials:
-   - Email: `demo@example.com`
-   - Password: `demo123`
-4. **Take the test** using interactive sliders
-5. **View results** with confidence scores and advice
-6. **Track history** of all your personality tests
+The assessment sends numeric responses to `/api/predict`. The API orders them using `features.json`, runs the classifier, decodes the predicted label, stores the result and returns probabilities plus advice.
 
-### 🔮 Next Steps for Development
+## API reference
 
-#### Planned Enhancements:
-- **Enhanced Results Page** - Detailed charts and visualizations
-- **History Analytics** - Personality trend analysis over time
-- **Social Features** - Compare with friends (optional)
-- **Export Results** - PDF reports generation
-- **Mobile App** - React Native version
+Protected routes require `Authorization: Bearer <token>`.
 
-### 🐛 Troubleshooting
+| Method | Endpoint | Purpose | Authentication |
+| --- | --- | --- | --- |
+| POST | `/api/auth/signup` | Create an account | Public |
+| POST | `/api/auth/login` | Get an access token | Public |
+| GET | `/api/auth/verify` | Verify token and retrieve user | Required |
+| GET / PUT | `/api/auth/profile` | Read or update profile | Required |
+| GET | `/api/features` | Retrieve ordered input names | Public |
+| POST | `/api/predict` | Predict and save an assessment | Required |
+| GET | `/api/history` | Retrieve assessment history | Required |
+| GET | `/api/test/<test_id>` | Retrieve one owned assessment | Required |
+| GET | `/api/test-auth` | Authentication diagnostic | Required |
 
-#### Common Issues:
-1. **CORS errors** - Make sure Flask backend is running on port 5000
-2. **Database errors** - SQLite DB will be created automatically on first run
-3. **Module not found** - Ensure all dependencies are installed in virtual environment
-4. **Port conflicts** - Change ports in package.json (React) or app.py (Flask)
+## Model context
 
-### 📊 Database Schema
+The included retraining script generates **1,000 synthetic samples**, assigns labels using hand-written feature rules, and fits a **Gaussian Naive Bayes** classifier with an 80/20 train/test split.
 
-```sql
-Users Table:
-- id (Primary Key)
-- name, email, password_hash
-- created_at, updated_at
+That script describes a demonstration training workflow; it does not establish the provenance or real-world accuracy of the committed model artifacts. Model probabilities are not evidence of a clinically validated personality assessment.
 
-PersonalityTest Table:
-- id (Primary Key)
-- user_id (Foreign Key)
-- features (JSON), prediction, confidence
-- probabilities (JSON), created_at
-```
+Running `python retrain_model.py` overwrites the saved model and encoder in `joblib/`. Keep a copy of any artifacts you need before retraining.
 
-This setup transforms your simple HTML form into a comprehensive, production-ready personality assessment platform! 🎉
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Frontend cannot reach API | Start Flask on port 5000 and React on port 3000 |
+| Model or feature file missing | Run `python app.py` from the repository root |
+| Python installation error | Check compatibility with the pinned package versions |
+| Model deserialization error | Check the model's training environment before replacing artifacts |
+| Empty account history | Complete an assessment using the same signed-in account |
+
+## Development status
+
+This repository currently uses development settings, including placeholder signing keys, unrestricted CORS and Flask debug mode. Review these settings before deployment. No live demo, verified accuracy, automated test status or license is claimed here.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for a small, reviewable contribution workflow.
+
+---
+
+<div align="center">
+Built with React · Flask · scikit-learn
+</div>
+
+## Documentation
+
+[Visual guide](docs/README.md) · [Roadmap](docs/ROADMAP.md) · [Citation](CITATION.cff) · [Licensing](docs/LICENSING.md)
